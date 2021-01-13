@@ -23,9 +23,7 @@ public class Listener extends ListenerAdapter {
     }
 
     public void onGuildMessageReceived(@NotNull GuildMessageReceivedEvent event) {
-        if (event.getMessage().getContentRaw().equals(".ping")) {
-            event.getChannel().sendMessage("Guild Pong!").queue();
-        }
+        commands.evaluateOnGuildMessageReceived(event);
     }
 
     @Override

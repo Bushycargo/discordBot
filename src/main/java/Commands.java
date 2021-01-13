@@ -1,4 +1,5 @@
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
 public class Commands {
     String PREFIX;
@@ -8,14 +9,24 @@ public class Commands {
 
     public void evaluateOnMessageReceived(MessageReceivedEvent event) {
         String message = event.getMessage().getContentRaw();
-        if (String.valueOf(message.charAt(0)).equals(PREFIX)){
-            message = message.substring(1);
+        String prefixComparison = message.substring(0,PREFIX.length());
+        if (prefixComparison.equals(PREFIX)){
+            message = message.substring(PREFIX.length());
             switch (message){
                 case "help":
                     event.getChannel().sendMessage("Help\n\nPrefix is \"" + PREFIX + "\"\n\nhelp : Returns this\nping : Returns Pong").queue();
                     break;
-                default:
-                    event.getChannel().sendMessage("Unknown Command. Do " + PREFIX + "help for a list of commands").queue();
+            }
+        }
+    }
+    public void evaluateOnGuildMessageReceived(GuildMessageReceivedEvent event){
+        String message = event.getMessage().getContentRaw();
+        String prefixComparison = message.substring(0,PREFIX.length());
+        if (prefixComparison.equals(PREFIX)){
+            message = message.substring(PREFIX.length());
+            switch (message){
+                case "ping":
+                    event.getChannel().sendMessage("Pong!").queue();
                     break;
             }
         }

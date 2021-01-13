@@ -22,6 +22,7 @@ public class Listener extends ListenerAdapter {
         commands.evaluateOnMessageReceived(event);
     }
 
+    @Override
     public void onGuildMessageReceived(@NotNull GuildMessageReceivedEvent event) {
         commands.evaluateOnGuildMessageReceived(event);
     }

@@ -28,8 +28,6 @@ public class Listener extends ListenerAdapter {
 
     @Override
     public void onPrivateMessageReceived(@NotNull PrivateMessageReceivedEvent event) {
-        if (event.getMessage().getContentRaw().equals(".ping")) {
-            event.getChannel().sendMessage("Private Pong!").queue();
-        }
+        commands.evaluateOnPrivateMessageReceived(event);
     }
 }

@@ -8,8 +8,9 @@ public class Main extends ListenerAdapter {
         //SET UP ---------
         String BOT_TOKEN = "NDEzNDAwOTcyNTgxMjczNjEx.WoR_qA.TLgsaz3WnzB32Fp2oNBDW1ncxLY";
         String PREFIX = "yo ";
+        Integer VERBOSITY = 2; //0 = No output, 1 = Minimal, 2 = Commands ran output, 3 = Every message read output
 
         JDA api = JDABuilder.createDefault(BOT_TOKEN).build();
-        api.addEventListener(new Listener(PREFIX));
+        api.addEventListener(new Listener(PREFIX, VERBOSITY));
     }
 }

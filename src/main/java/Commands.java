@@ -6,8 +6,10 @@ import java.util.Date;
 
 public class Commands {
     String PREFIX;
-    public Commands(String PREFIX){
+    Integer VERBOSITY;
+    public Commands(String PREFIX, Integer VERBOSITY){
         this.PREFIX = PREFIX;
+        this.VERBOSITY = VERBOSITY;
     }
 
     public void evaluateOnMessageReceived(MessageReceivedEvent event) {
@@ -16,7 +18,9 @@ public class Commands {
         String prefixComparison = message.substring(0,PREFIX.length());
         if (prefixComparison.equals(PREFIX)){
             message = message.substring(PREFIX.length());
-            System.out.println(timeStamp + ": " + event.getMessage().getContentRaw());
+            if (VERBOSITY >= 2){
+                System.out.println(timeStamp + ": " + event.getMessage().getContentRaw());
+            }
             switch (message){
                 case "help":
                     event.getChannel().sendMessage("Help\n\nPrefix is \"" + PREFIX + "\"\n\nhelp : Returns this\nping : Returns Pong").queue();
@@ -25,12 +29,10 @@ public class Commands {
         }
     }
     public void evaluateOnGuildMessageReceived(GuildMessageReceivedEvent event){
-        String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
         String message = event.getMessage().getContentRaw();
         String prefixComparison = message.substring(0,PREFIX.length());
         if (prefixComparison.equals(PREFIX)){
             message = message.substring(PREFIX.length());
-            System.out.println(timeStamp + ": " + event.getMessage().getContentRaw());
             switch (message){
                 case "ping":
                     event.getChannel().sendMessage("Pong!").queue();
@@ -39,12 +41,10 @@ public class Commands {
         }
     }
     public void evaluateOnPrivateMessageReceived(PrivateMessageReceivedEvent event){
-        String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
         String message = event.getMessage().getContentRaw();
         String prefixComparison = message.substring(0,PREFIX.length());
         if (prefixComparison.equals(PREFIX)){
             message = message.substring(PREFIX.length());
-            System.out.println(timeStamp + ": " + event.getMessage().getContentRaw());
             switch (message){
                 case "ping":
                     event.getChannel().sendMessage("Pong!").queue();

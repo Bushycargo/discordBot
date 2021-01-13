@@ -4,22 +4,32 @@ import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.api.events.message.priv.PrivateMessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.jetbrains.annotations.NotNull;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Listener extends ListenerAdapter {
     String PREFIX;
+    Integer VERBOSITY;
     Commands commands;
-    public Listener(String PREFIX){
+    public Listener(String PREFIX, Integer VERBOSITY){
         this.PREFIX = PREFIX;
-        commands = new Commands(this.PREFIX);
+        this.VERBOSITY = VERBOSITY;
+        commands = new Commands(this.PREFIX, this.VERBOSITY);
     }
     @Override
     public void onReady(@NotNull ReadyEvent event) {
-        System.out.println("JDA loaded and ready!");
+        if (VERBOSITY >= 1){
+            System.out.println("JDA loaded and ready!");
+        }
     }
 
     @Override
     public void onMessageReceived(@NotNull MessageReceivedEvent event){
         commands.evaluateOnMessageReceived(event);
+        if (VERBOSITY >= 3){
+            String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
+            System.out.println(timeStamp + ": " + event.getMessage().getContentRaw());
+        }
     }
 
     @Override

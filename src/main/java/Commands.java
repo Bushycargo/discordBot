@@ -88,10 +88,20 @@ public class Commands {
     }
     public void evaluateOnGuildMessageReceived(GuildMessageReceivedEvent event){
         String message = event.getMessage().getContentRaw();
+        String command;
+        String args;
         String prefixComparison = message.substring(0,PREFIX.length());
         if (prefixComparison.equals(PREFIX)){
             message = message.substring(PREFIX.length());
-            switch (message){
+            try {
+                command = message.substring(0, message.indexOf(' '));
+                args = message.substring(message.indexOf(' ') + 1);
+            }
+            catch (Exception e){
+                command = message;
+                args = "";
+            }
+            switch (command){
                 case "ping":
                     event.getChannel().sendMessage("Pong!").queue();
                     break;
@@ -100,10 +110,20 @@ public class Commands {
     }
     public void evaluateOnPrivateMessageReceived(PrivateMessageReceivedEvent event){
         String message = event.getMessage().getContentRaw();
+        String command;
+        String args;
         String prefixComparison = message.substring(0,PREFIX.length());
         if (prefixComparison.equals(PREFIX)){
             message = message.substring(PREFIX.length());
-            switch (message){
+            try {
+                command = message.substring(0, message.indexOf(' '));
+                args = message.substring(message.indexOf(' ') + 1);
+            }
+            catch (Exception e){
+                command = message;
+                args = "";
+            }
+            switch (command){
                 case "ping":
                     event.getChannel().sendMessage("Pong!").queue();
                     break;

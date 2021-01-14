@@ -25,7 +25,11 @@ public class Listener extends ListenerAdapter {
 
     @Override
     public void onMessageReceived(@NotNull MessageReceivedEvent event){
-        commands.evaluateOnMessageReceived(event);
+        try {
+            commands.evaluateOnMessageReceived(event);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         if (VERBOSITY >= 3){
             String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
             System.out.println(timeStamp + ": " + event.getMessage().getContentRaw());

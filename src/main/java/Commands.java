@@ -124,6 +124,10 @@ public class Commands {
                 args = "";
             }
             switch (command){
+                case "join":
+                    Voice voice = new Voice();
+                    voice.Connect(event);
+                    break;
                 case "ping":
                     event.getChannel().sendMessage("Pong!").queue();
                     break;

@@ -3,6 +3,7 @@ import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.api.events.message.priv.PrivateMessageReceivedEvent;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Random;
 
 public class Commands {
     String PREFIX;
@@ -39,11 +40,16 @@ public class Commands {
                                 "help : Returns this, if you do help then a command it will tell you available arguments for a command\n" +
                                 "mama : Returns a yo mama joke\n" +
                                 "ping : Returns Pong\n" +
+                                "random : Returns a random number\n" +
                                 "fuck : Fuck that arg!").queue();
                         break;
                     }
                     else{
                         switch (args){
+                            case "random":
+                                event.getChannel().sendMessage("random [Integer lower], [Integer upper]\n" +
+                                        "Will give a random number from the lower number to the upper number, including the lower but not the upper").queue();
+                                break;
                             case "fuck":
                                 event.getChannel().sendMessage("fuck [String argument]\n" +
                                         "The command will give the bot's opinion on something").queue();
@@ -88,6 +94,17 @@ public class Commands {
                         }
                     }
                     break;
+                case "random":
+                    if (args.equals("")){
+                        event.getChannel().sendMessage("Invalid arguments. Do \"" + PREFIX + "help random\" for a list of arguments").queue();
+                    }
+                    else {
+                        Integer split = args.indexOf(',');
+                        Integer firstValue = Integer.parseInt(args.substring(0, split));
+                        Integer secondValue = Integer.parseInt(args.substring(split + 1).trim());
+                        Integer random = new Random().nextInt(secondValue-firstValue) + firstValue;
+                        event.getChannel().sendMessage(random.toString()).queue();
+                    }
             }
         }
     }

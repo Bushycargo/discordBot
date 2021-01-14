@@ -38,11 +38,16 @@ public class Commands {
                                 "Prefix is \"" + PREFIX + "\"\n\n" +
                                 "help : Returns this, if you do help then a command it will tell you available arguments for a command\n" +
                                 "mama : Returns a yo mama joke\n" +
-                                "ping : Returns Pong").queue();
+                                "ping : Returns Pong\n" +
+                                "fuck : Fuck that arg!").queue();
                         break;
                     }
                     else{
                         switch (args){
+                            case "fuck":
+                                event.getChannel().sendMessage("fuck [String argument]\n" +
+                                        "The command will give the bot's opinion on something").queue();
+                                break;
                             case "help":
                                 event.getChannel().sendMessage("help [String command]\n" +
                                         "The help command will tell you the arguments for a specific command if entered else it will display the help message").queue();
@@ -104,6 +109,19 @@ public class Commands {
             switch (command){
                 case "ping":
                     event.getChannel().sendMessage("Pong!").queue();
+                    break;
+                case "fuck":
+                    switch (args){
+                        case "":
+                            event.getChannel().sendMessage("Invalid arguments. Do \"" + PREFIX + "help fuck\" for a list of arguments").queue();
+                            break;
+                        case "me":
+                            event.getChannel().sendMessage("Fuck you").queue();
+                            break;
+                        default:
+                            event.getChannel().sendMessage("Yeah, fuck " + args + "! All my homies hate " + args + ".").queue();
+                            break;
+                    }
                     break;
             }
         }

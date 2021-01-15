@@ -1,5 +1,5 @@
 # discordBot
-Discord bot writtern in Java
+Discord bot written in Java
 
 Cheeky little discord bot written in Java using JDA.
 

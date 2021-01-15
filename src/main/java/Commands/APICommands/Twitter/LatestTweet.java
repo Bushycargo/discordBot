@@ -13,12 +13,16 @@ public class LatestTweet extends TextCommand {
     protected void run() throws Exception {
         TwitterAPI twitterAPI = new TwitterAPI();
         Status tweet;
-        try {
-            tweet = twitterAPI.getTimeline(args).get(0);
-            output = "https://twitter.com/" + tweet.getUser().getScreenName() + "/status/" + tweet.getId();
-        }
-        catch (TwitterException twitterException){
+        if (args.equals("") || args.contains(" ")){
             output = "Invalid User";
+        }
+        else {
+            try {
+                tweet = twitterAPI.getTimeline(args).get(0);
+                output = "https://twitter.com/" + tweet.getUser().getScreenName() + "/status/" + tweet.getId();
+            } catch (TwitterException twitterException) {
+                output = "Invalid User";
+            }
         }
     }
 }

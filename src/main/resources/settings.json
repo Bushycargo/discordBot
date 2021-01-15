@@ -1,5 +1,5 @@
 {
   "BOT_TOKEN" : "",
-  "VERBOSITY" : "",
+  "VERBOSITY" : 2,
   "PREFIX": ""
 }

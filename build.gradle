@@ -18,6 +18,7 @@ dependencies {
     compile group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
     compile group: 'org.twitter4j', name: 'twitter4j-core', version: '[4.0,)'
     compile 'net.dean.jraw:JRAW:1.1.0'
+    compile 'org.json:json:20201115'
 }
 
 test {

@@ -9,5 +9,6 @@
   "RedditUser": "",
   "RedditPassword": "",
   "RedditOAuthToken": "",
-  "RedditOAuthSecret": ""
+  "RedditOAuthSecret": "",
+  "TenorAPIKey": ""
 }

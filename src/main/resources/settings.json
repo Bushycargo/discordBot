@@ -1,5 +1,9 @@
 {
-  "BOT_TOKEN" : "",
-  "VERBOSITY" : 2,
-  "PREFIX": ""
+  "BOT_TOKEN": "",
+  "VERBOSITY": 2,
+  "PREFIX": "",
+  "TwitterOAuthConsumerKey" : "",
+  "TwitterOAuthConsumerSecret": "",
+  "TwitterOAuthAccessToken": "",
+  "TwitterOAuthAccessTokenSecret": ""
 }

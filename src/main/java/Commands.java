@@ -7,8 +7,8 @@ import java.util.Date;
 import Commands.*;
 
 public class Commands {
-    String PREFIX;
-    Integer VERBOSITY;
+    private final String PREFIX;
+    private final Integer VERBOSITY;
     public Commands(String PREFIX, Integer VERBOSITY){
         this.PREFIX = PREFIX;
         this.VERBOSITY = VERBOSITY;

@@ -1,4 +1,6 @@
-package Commands;
+package Commands.Fun.Jokes;
+
+import Commands.TextCommand;
 
 public class MamaJoke extends TextCommand {
     public MamaJoke(String args, String PREFIX) throws Exception {

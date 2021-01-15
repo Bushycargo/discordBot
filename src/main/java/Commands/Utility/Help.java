@@ -1,4 +1,6 @@
-package Commands;
+package Commands.Utility;
+
+import Commands.TextCommand;
 
 public class Help extends TextCommand {
     public Help(String args, String PREFIX) throws Exception {

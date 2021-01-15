@@ -1,3 +1,6 @@
+import Commands.Fun.FuckSomething;
+import Commands.Fun.Jokes.MamaJoke;
+import Commands.Utility.Help;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.api.events.message.priv.PrivateMessageReceivedEvent;

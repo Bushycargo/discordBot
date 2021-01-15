@@ -1,4 +1,4 @@
-package Commands;
+package Commands.Fun.Jokes;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;

@@ -1,6 +1,8 @@
-package Commands;
+package Commands.Fun;
 
-public class FuckSomething extends TextCommand{
+import Commands.TextCommand;
+
+public class FuckSomething extends TextCommand {
     public FuckSomething(String args, String PREFIX) throws Exception {
         super(args, PREFIX);
     }

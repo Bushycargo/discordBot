@@ -1,5 +1,6 @@
 package APIs;
 
+import Utility.SettingsOptions;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -15,15 +16,7 @@ import java.nio.charset.StandardCharsets;
 
 public class TenorAPI {
     public static JSONObject getGif(String searchTerm, Integer limit) throws IOException, ParseException {
-        org.json.simple.JSONObject settings;
-        String API_KEY;
-        try {
-            settings = (org.json.simple.JSONObject) new JSONParser().parse(new FileReader("settings.json"));
-        }
-        catch (IOException | ParseException e){
-            settings = (org.json.simple.JSONObject) new JSONParser().parse(new FileReader("build/libs/settings.json"));
-        }
-        API_KEY = settings.get("TenorAPIKey").toString();
+        String API_KEY = SettingsOptions.GetSetting("TenorAPIKey");
         return getSearchResults(searchTerm, limit, API_KEY);
     }
 
@@ -39,7 +32,6 @@ public class TenorAPI {
         }
         return null;
     }
-
     private static JSONObject get(String url) throws IOException, JSONException {
         HttpURLConnection connection = null;
         try {
@@ -69,7 +61,6 @@ public class TenorAPI {
         }
         return new JSONObject("");
     }
-
     private static JSONObject parser(HttpURLConnection connection) throws JSONException {
         char[] buffer = new char[1024 * 4];
         int n;

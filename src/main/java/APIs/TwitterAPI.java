@@ -1,4 +1,5 @@
 package APIs;
+import Utility.SettingsOptions;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -14,20 +15,12 @@ import java.util.List;
 public class TwitterAPI {
     private Twitter twitter;
 
-    public TwitterAPI() throws IOException, ParseException, TwitterException {
-        JSONObject settings;
-        try {
-            settings = (JSONObject) new JSONParser().parse(new FileReader("settings.json"));
-        }
-        catch (IOException | ParseException e){
-            settings = (JSONObject) new JSONParser().parse(new FileReader("build/libs/settings.json"));
-        }
-
+    public TwitterAPI() throws IOException, ParseException {
         ConfigurationBuilder configurationBuilder = new ConfigurationBuilder();
-        configurationBuilder.setOAuthAccessToken(settings.get("TwitterOAuthAccessToken").toString())
-                .setOAuthAccessTokenSecret(settings.get("TwitterOAuthAccessTokenSecret").toString())
-                .setOAuthConsumerKey(settings.get("TwitterOAuthConsumerKey").toString())
-                .setOAuthConsumerSecret(settings.get("TwitterOAuthConsumerSecret").toString());
+        configurationBuilder.setOAuthAccessToken(SettingsOptions.GetSetting("TwitterOAuthAccessToken"))
+                .setOAuthAccessTokenSecret(SettingsOptions.GetSetting("TwitterOAuthAccessTokenSecret"))
+                .setOAuthConsumerKey(SettingsOptions.GetSetting("TwitterOAuthConsumerKey"))
+                .setOAuthConsumerSecret(SettingsOptions.GetSetting("TwitterOAuthConsumerSecret"));
 
         TwitterFactory twitterFactory = new TwitterFactory(configurationBuilder.build());
         twitter = twitterFactory.getInstance();

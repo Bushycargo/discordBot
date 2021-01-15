@@ -38,11 +38,19 @@ public class Listener extends ListenerAdapter {
 
     @Override
     public void onGuildMessageReceived(@NotNull GuildMessageReceivedEvent event) {
-        commands.evaluateOnGuildMessageReceived(event);
+        try {
+            commands.evaluateOnGuildMessageReceived(event);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void onPrivateMessageReceived(@NotNull PrivateMessageReceivedEvent event) {
-        commands.evaluateOnPrivateMessageReceived(event);
+        try {
+            commands.evaluateOnPrivateMessageReceived(event);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

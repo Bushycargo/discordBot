@@ -5,5 +5,9 @@
   "TwitterOAuthConsumerKey" : "",
   "TwitterOAuthConsumerSecret": "",
   "TwitterOAuthAccessToken": "",
-  "TwitterOAuthAccessTokenSecret": ""
+  "TwitterOAuthAccessTokenSecret": "",
+  "RedditUser": "",
+  "RedditPassword": "",
+  "RedditOAuthToken": "",
+  "RedditOAuthSecret": ""
 }

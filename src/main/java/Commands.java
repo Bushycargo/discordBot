@@ -1,3 +1,4 @@
+import Commands.APICommands.Twitter.LatestTweet;
 import Commands.Fun.FuckSomething;
 import Commands.Fun.Jokes.MamaJoke;
 import Commands.Utility.Help;
@@ -45,6 +46,8 @@ public class Commands {
                 case "random":
                     event.getChannel().sendMessage(new RandomNumber(args, PREFIX).getOutput().toString()).queue();
                     break;
+                case "new-tweet":
+                    event.getChannel().sendMessage(new LatestTweet(args, PREFIX).getOutput().toString()).queue();
             }
         }
     }

@@ -7,7 +7,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Random;
 
-public class Jokes {
+public abstract class Jokes {
     public static String RandomJoke(String type) throws Exception {
         Object object;
         try {

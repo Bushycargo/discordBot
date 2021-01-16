@@ -1,9 +1,9 @@
 package APIs;
 
 import Utility.SettingsOptions;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.*;
@@ -11,21 +11,30 @@ import java.net.ConnectException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.util.Random;
 
 //MAJORITY OF CODE FROM https://tenor.com/gifapi/documentation
 
 public class TenorAPI {
-    public static JSONObject getGif(String searchTerm, Integer limit) throws IOException, ParseException {
+    public static String getGif(String searchTerm) throws IOException, ParseException {
         String API_KEY = SettingsOptions.GetSetting("TenorAPIKey");
-        return getSearchResults(searchTerm, limit, API_KEY);
+        if (searchTerm.equals("")){
+            searchTerm = "random";
+        }
+        JSONObject unfiltered = getSearchResults(searchTerm, API_KEY);
+        assert unfiltered != null;
+        Integer random = new Random().nextInt(unfiltered.length());
+        JSONObject results = unfiltered.getJSONArray("results").getJSONObject(random);
+        JSONObject media = results.getJSONArray("media").getJSONObject(0);
+        return (String) media.getJSONObject("gif").get("url");
     }
 
-    private static JSONObject getSearchResults(String searchTerm, int limit, String API_KEY) {
+    private static JSONObject getSearchResults(String searchTerm, String API_KEY) {
 
         // make search request - using default locale of EN_US
 
         final String url = String.format("https://api.tenor.com/v1/search?q=%1$s&key=%2$s&limit=%3$s",
-                searchTerm, API_KEY, limit);
+                searchTerm, API_KEY, 30);
         try {
             return get(url);
         } catch (IOException | JSONException ignored) {

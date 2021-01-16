@@ -49,8 +49,10 @@ public class Commands {
                     break;
                 case "new-tweet":
                     event.getChannel().sendMessage(new LatestTweet(args, PREFIX).getOutput().toString()).queue();
+                    break;
                 case "gif":
                     event.getChannel().sendMessage(new TenorGetGif(args, PREFIX).getOutput().toString()).queue();
+                    break;
             }
         }
     }

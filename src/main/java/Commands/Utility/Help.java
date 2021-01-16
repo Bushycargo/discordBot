@@ -25,6 +25,7 @@ public class Help extends TextCommand {
                 case "gif":
                     output = "`gif [Optional Search Parameter]`\n" +
                             "Will give you a gif depending on search parameter, if blank it'll be randomish (Kinda buggy right now)";
+                    break;
                 case "new-tweet":
                     output="`new-tweet [String user]`\n" +
                             "Will give the latest tweet from a twitter user, if it can not: returns \"Invalid User\"";

@@ -17,10 +17,14 @@ public class Help extends TextCommand {
                     "`ping` : Returns Pong\n" +
                     "`random` : Returns a random number\n" +
                     "`new-tweet` : Returns the latest tweet from a twitter user\n" +
+                    "`gif` : Returns a gif\n" +
                     "`fuck` : Fuck that arg!";
         }
         else{
             switch (args){
+                case "gif":
+                    output = "`gif [Optional Search Parameter]`\n" +
+                            "Will give you a gif depending on search parameter, if blank it'll be randomish (Kinda buggy right now)";
                 case "new-tweet":
                     output="`new-tweet [String user]`\n" +
                             "Will give the latest tweet from a twitter user, if it can not: returns \"Invalid User\"";

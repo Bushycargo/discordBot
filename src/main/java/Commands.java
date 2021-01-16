@@ -1,6 +1,7 @@
 import Commands.APICommands.Twitter.LatestTweet;
 import Commands.Fun.FuckSomething;
 import Commands.Fun.Jokes.MamaJoke;
+import Commands.APICommands.Tenor.TenorGetGif;
 import Commands.Utility.Help;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
@@ -48,6 +49,8 @@ public class Commands {
                     break;
                 case "new-tweet":
                     event.getChannel().sendMessage(new LatestTweet(args, PREFIX).getOutput().toString()).queue();
+                case "gif":
+                    event.getChannel().sendMessage(new TenorGetGif(args, PREFIX).getOutput().toString()).queue();
             }
         }
     }

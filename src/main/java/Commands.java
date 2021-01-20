@@ -3,6 +3,7 @@ import Commands.Fun.FuckSomething;
 import Commands.Fun.Jokes.MamaJoke;
 import Commands.APICommands.Tenor.TenorGetGif;
 import Commands.Utility.Help;
+import Utility.GuildDependentSettings;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.api.events.message.priv.PrivateMessageReceivedEvent;
@@ -53,6 +54,10 @@ public class Commands {
                 case "gif":
                     event.getChannel().sendMessage(new TenorGetGif(args, PREFIX).getOutput().toString()).queue();
                     break;
+                case "set":
+                    String argOne = args.substring(0, args.indexOf(' '));
+                    String argTwo = args.substring(args.indexOf(' ')+1);
+                    GuildDependentSettings.SetDependentSetting(argOne, event.getGuild(), argTwo);
             }
         }
     }
